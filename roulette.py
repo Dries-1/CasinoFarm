@@ -1,5 +1,5 @@
 import random
-from player import Player  # Zorg ervoor dat de Player klasse in een apart bestand staat
+from player import Player  
 
 
 class Roulette:
@@ -13,8 +13,8 @@ class Roulette:
             25: 'rood', 26: 'zwart', 27: 'rood', 28: 'zwart', 29: 'zwart', 30: 'rood',
             31: 'zwart', 32: 'rood', 33: 'zwart', 34: 'rood', 35: 'zwart', 36: 'rood'
         }
+        self.player = player
         self.ball = None
-        self.player = player  # Use external Player instance
 
     def spin_wheel(self):
         nummer = random.randint(0, 36)
@@ -31,7 +31,8 @@ class Roulette:
                 print("❌ Ongeldige inzet.")
                 return
 
-            bet_type = input("Wil je inzetten op 'kleur' of 'nummer'? ").strip().lower()
+            print("Je kunt inzetten op: kleur (rood/zwart/groen), nummer (0-36), of even/oneven")
+            bet_type = input("Waar wil je op inzetten? ('kleur', 'nummer', 'even/oneven'): ").strip().lower()
 
             if bet_type == "kleur":
                 keuze = input("Kies kleur (rood/zwart/groen): ").strip().lower()
@@ -64,8 +65,28 @@ class Roulette:
                         print(f"❌ Verloren. Nieuwe saldo: €{self.player.cash}")
                 except ValueError:
                     print("❌ Ongeldig nummer.")
+
+            elif bet_type == "even/oneven":
+                keuze = input("Kies 'even' of 'oneven': ").strip().lower()
+                if keuze not in ['even', 'oneven']:
+                    print("❌ Ongeldige keuze.")
+                    return
+
+                nummer, kleur = self.spin_wheel()
+                if nummer == 0:
+                    print("0 is geen even of oneven. Automatisch verloren.")
+                    self.player.cash -= bedrag
+                    print(f"❌ Verloren. Nieuwe saldo: €{self.player.cash}")
+                    return
+
+                if (nummer % 2 == 0 and keuze == 'even') or (nummer % 2 != 0 and keuze == 'oneven'):
+                    self.player.cash += bedrag
+                    print(f"✅ Je wint! Nieuwe saldo: €{self.player.cash}")
+                else:
+                    self.player.cash -= bedrag
+                    print(f"❌ Verloren. Nieuwe saldo: €{self.player.cash}")
             else:
-                print("❌ Ongeldige keuze.")
+                print("❌ Ongeldige inzet-optie.")
         except ValueError:
             print("❌ Ongeldige invoer.")
 
@@ -78,7 +99,3 @@ class Roulette:
                 break
         print(f"👋 Spel afgelopen. Eindsaldo: €{self.player.cash}")
 
-# Spel starten
-player = Player()
-roulette = Roulette(player)
-roulette.start_game()

@@ -1,6 +1,7 @@
 import pygame
 import sys
 
+
 # Initialisatie
 pygame.init()
 WIDTH, HEIGHT = 600, 600
