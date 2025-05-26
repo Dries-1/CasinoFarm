@@ -24,7 +24,7 @@ ontgrendeld = 1
 
 # Zaadtypes
 zaden = {
-    "Wortel": {"kleur": (255, 165, 0), "kost": 1, "opbrengst": 1,5, "groei": 2},
+    "Wortel": {"kleur": (255, 165, 0), "kost": 1, "opbrengst": 1.5 , "groei": 2},
     "Maïs": {"kleur": (255, 255, 0), "kost": 10, "opbrengst": 13, "groei": 3},
     "Aardbei": {"kleur": (255, 0, 100), "kost": 15, "opbrengst": 35, "groei": 4}
 }
