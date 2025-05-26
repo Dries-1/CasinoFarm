@@ -133,7 +133,7 @@ while True:
         teken_vak(vak, i < ontgrendeld)
 
     if ontgrendeld < len(raster):
-        toon_tekst(f"Klik grijs vak ({kost_voor_volgend_vak()}euro) om uit te breiden", 10, 75)
+        toon_tekst(f"Klik grijs vak ({kost_voor_volgend_vak()}euro) om uit te breiden", 10, 100)
 
     pygame.display.flip()
     clock.tick(30)
