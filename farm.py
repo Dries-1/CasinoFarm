@@ -1,3 +1,4 @@
+from pyautogui import press
 import pygame
 import sys
 
@@ -87,7 +88,7 @@ while True:
         knop = pygame.Rect(x_knop, 10, 150, 30)
         pygame.draw.rect(screen, kleur, knop)
         pygame.draw.rect(screen, ZWART, knop, 2)
-        toon_tekst(f"{naam} ({zaden[naam]['kost']}g)", x_knop + 5, 15)
+        toon_tekst(f"{naam} ({zaden[naam]['kost']}euro)", x_knop + 5, 15)
         if pygame.mouse.get_pressed()[0] and knop.collidepoint(pygame.mouse.get_pos()):
             gekozen_zaad = naam
         if gekozen_zaad == naam:
@@ -133,7 +134,7 @@ while True:
         teken_vak(vak, i < ontgrendeld)
 
     if ontgrendeld < len(raster):
-        toon_tekst(f"Klik grijs vak ({kost_voor_volgend_vak()}euro) om uit te breiden", 10, 100)
+        toon_tekst(f"Klik grijs vak ({kost_voor_volgend_vak()}euro) om uit te breiden", 10, HEIGHT - 30)
 
     pygame.display.flip()
     clock.tick(30)
